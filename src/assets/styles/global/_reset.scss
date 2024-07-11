@@ -1,0 +1,88 @@
+*:where(:not(iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
+	all: unset;
+	display: revert;
+}
+
+body {
+	margin: 0;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+address,
+code,
+del,
+dfn,
+em,
+ins,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+b,
+i,
+hr,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+label {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	margin: 0;
+	padding: 0;
+	margin-block-start: 0px;
+	margin-block-end: 0px;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+}
+
+img {
+	max-width: 100%;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+input {
+	padding: 0;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input[type="number"] {
+	-moz-appearance: textfield;
+}
+
+button,
+a {
+	display: inline-block;
+	cursor: pointer;
+}

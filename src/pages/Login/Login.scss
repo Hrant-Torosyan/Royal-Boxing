@@ -1,0 +1,125 @@
+.authStyle {
+	height: 100vh;
+	background: url("../../../public/Images/registerBg.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	h4 {
+		color: rgba(0, 0, 0, 0.8);
+		font-size: 2rem;
+		margin-bottom: 2rem;
+		text-align: center;
+	}
+	.resetPass {
+		margin-top: 2rem;
+		text-align: right;
+		a {
+			color: rgba(34, 34, 34, 0.6);
+			font-size: 1.4rem;
+			transition: 0.5s;
+			&:hover {
+				color: #000;
+			}
+		}
+	}
+	.buttonList {
+		margin-top: 2rem;
+	}
+	.codeInputs {
+		display: flex;
+		justify-content: center;
+		margin-bottom: 40px;
+		.line {
+			position: absolute;
+			height: 2px;
+			transition: 0.5s;
+			border-radius: 2px;
+			width: 70%;
+			background: #222222;
+			transform: translate(-50%);
+			bottom: 10px;
+			left: 50%;
+		}
+		.codeInput {
+			position: relative;
+			padding: 2px;
+			margin: 0 0.2rem;
+			border-radius: 14px;
+			overflow: hidden;
+			transition: 0.5s;
+			&:focus-within {
+				background: rgb(255, 211, 89);
+			}
+			input {
+				border-radius: 12px;
+				overflow: hidden;
+				padding: 12px 17px;
+				text-align: center;
+				color: rgb(14, 26, 50);
+				font-size: 2.6rem;
+				font-weight: 500;
+				width: 100%;
+				background: #f9f9f9;
+				&::placeholder {
+					color: transparent;
+				}
+				&:not(:placeholder-shown) + .line {
+					opacity: 0;
+				}
+			}
+		}
+		.codeInput.error {
+			background: #ff0000 !important;
+		}
+	}
+
+	.buttons {
+		margin-top: 2.5rem;
+		div {
+			&:first-child {
+				margin-right: 2rem;
+			}
+		}
+	}
+	.genderTitle {
+		font-size: 1.8rem;
+		margin-top: 3.5rem;
+		margin-bottom: 1rem;
+		font-weight: 600;
+	}
+	.genderBlock {
+		display: flex;
+		justify-content: center;
+
+		.genderInfo {
+			cursor: pointer;
+			&:hover {
+				.genderBlockItem {
+					background: #22222278;
+				}
+			}
+			margin: 0 2rem;
+			text-align: center;
+			p {
+				font-weight: 600;
+				font-size: 1.6rem;
+				margin-top: 0.2rem;
+			}
+			.genderBlockItem {
+				width: 8rem;
+				height: 8rem;
+				border-radius: 50%;
+				transition: 0.5s;
+				background: #22222221;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+		}
+		.genderInfo.active {
+			.genderBlockItem {
+				background: #22222278;
+			}
+		}
+	}
+}

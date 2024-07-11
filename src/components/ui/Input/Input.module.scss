@@ -1,0 +1,143 @@
+.inputStyle {
+	// overflow: hidden;
+
+	h3 {
+		color: rgba(0, 0, 0, 0.8);
+		font-size: 1.6rem;
+		padding-bottom: 0.5rem;
+		margin-top: 1rem;
+	}
+	.errorText {
+		color: #ff0000 !important;
+	}
+
+	input {
+		border-radius: 13px;
+		background: rgb(249, 249, 249);
+		padding: 1rem;
+		width: 100%;
+		text-align: center;
+		font-size: 1.6rem;
+		border: 2px solid transparent;
+		transition: 0.5s;
+		&:focus-within,
+		&:hover {
+			border-color: rgb(255, 211, 89);
+		}
+	}
+	.inpError {
+		border-color: #ff0000 !important;
+	}
+	.inputBox {
+		position: relative;
+		.eye {
+			cursor: pointer;
+			right: 1rem;
+			transform: translate(0, -45%);
+			position: absolute;
+			top: 50%;
+		}
+		.passIcon {
+			transform: translate(0, -45%);
+			position: absolute;
+			top: 50%;
+			left: 1rem;
+		}
+		.county {
+			cursor: pointer;
+			z-index: 333;
+			transform: translate(0, -45%);
+			position: absolute;
+			top: 50%;
+			left: 1rem;
+			display: flex;
+			> p {
+				font-size: 1.5rem;
+				font-weight: 600;
+				margin-left: 0.5rem;
+			}
+			.countyBlock {
+				display: flex;
+				align-items: center;
+				img {
+					width: 3rem;
+					height: 1.5rem;
+					margin-right: 0.5rem;
+				}
+				.angle {
+					transition: 0.5s;
+				}
+			}
+			.countyMenu {
+				left: 0;
+				transition: 0.5s;
+				width: 12rem;
+				max-height: 15rem;
+				overflow: auto;
+				background: red;
+				position: absolute;
+				z-index: 333;
+				top: 2.5rem;
+				border: 2px solid rgb(255, 211, 89);
+				box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+				border-radius: 0.5rem;
+				background: rgb(245, 245, 245);
+				transform: translate(0, 20%);
+				opacity: 0;
+				.countyMenuItem {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					flex-direction: column;
+					.countyMenuInfo {
+						width: 100%;
+						display: flex;
+						align-items: center;
+						justify-content: space-between;
+						padding: 0.8rem 1rem;
+						cursor: pointer;
+						&:hover {
+							background: rgba(255, 211, 89, 0.766);
+						}
+					}
+
+					img {
+						width: 4rem;
+						height: 2rem;
+						margin-right: 0.5rem;
+					}
+					p {
+						font-size: 1.3rem;
+						font-weight: 600;
+					}
+					.line {
+						width: 85%;
+						border-top: 1px solid rgb(255, 211, 89);
+					}
+				}
+			}
+		}
+	}
+}
+
+.openSelectAnimation {
+	overflow: visible;
+	.angle {
+		transform: rotate(-180deg);
+	}
+	.countyMenu {
+		opacity: 1 !important;
+		transform: translate(0, 0) !important;
+	}
+}
+.closeSelectAnimation {
+	animation: delayOverflow 0.7s ease forwards;
+}
+@keyframes delayOverflow {
+	from {
+		overflow: visible;
+	}
+	to {
+		overflow: hidden;
+	}
+}

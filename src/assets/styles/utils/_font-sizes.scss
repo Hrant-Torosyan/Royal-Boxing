@@ -1,0 +1,91 @@
+@use "../mixins";
+
+.fz-11-400 {
+	@include mixins.font-size(1.1rem, normal, 400);
+}
+.fz-12-400 {
+	@include mixins.font-size(1.2rem, normal, 400);
+}
+.fz-13-400 {
+	@include mixins.font-size(1.3rem, normal, 400);
+}
+.fz-13-600 {
+	@include mixins.font-size(1.3rem, normal, 600);
+}
+.fz-14-400 {
+	@include mixins.font-size(1.4rem, normal, 400);
+}
+.fz-14-500 {
+	@include mixins.font-size(1.4rem, normal, 500);
+}
+.fz-14-600 {
+	@include mixins.font-size(1.4rem, normal, 600);
+}
+.fz-14-700 {
+	@include mixins.font-size(1.4rem, normal, 700);
+}
+.fz-16-300 {
+	@include mixins.font-size(1.6rem, normal, 300);
+}
+.fz-16-400 {
+	@include mixins.font-size(1.6rem, normal, 400);
+}
+.fz-16-500 {
+	@include mixins.font-size(1.6rem, normal, 500);
+}
+.fz-16-600 {
+	@include mixins.font-size(1.6rem, normal, 600);
+}
+.fz-16-700 {
+	@include mixins.font-size(1.6rem, normal, 700);
+}
+.fz-18-400 {
+	@include mixins.font-size(1.8rem, normal, 400);
+}
+.fz-18-500 {
+	@include mixins.font-size(1.8rem, normal, 500);
+}
+.fz-18-600 {
+	@include mixins.font-size(1.8rem, normal, 600);
+}
+.fz-18-700 {
+	@include mixins.font-size(1.8rem, normal, 700);
+}
+.fz-20-500 {
+	@include mixins.font-size(2rem, normal, 500);
+}
+.fz-20-600 {
+	@include mixins.font-size(2rem, normal, 600);
+}
+.fz-21-500 {
+	@include mixins.font-size(2.1rem, normal, 500);
+}
+.fz-22-500 {
+	@include mixins.font-size(2.2rem, normal, 500);
+}
+.fz-22-600 {
+	@include mixins.font-size(2.2rem, normal, 600);
+}
+.fz-24-500 {
+	@include mixins.font-size(2.4rem, normal, 500);
+}
+
+.fz-24-600 {
+	@include mixins.font-size(2.4rem, normal, 600);
+}
+
+.text-white {
+	color: #fff;
+}
+
+.text-blue {
+	color: #348ef1;
+}
+
+.text-red {
+	color: #eb1717;
+}
+
+.text-grey {
+	color: rgb(163, 174, 208);
+}
