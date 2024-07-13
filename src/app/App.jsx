@@ -1,22 +1,25 @@
 import React, { Suspense } from "react";
 import "../assets/styles/main.scss";
 // const LayoutRoot = React.lazy(() => import("../components/Layouts/LayoutRoot"));
-const Layout = React.lazy(() => import("../components/Layouts/Layout"));
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import ProtectedRoutes from "./ProtectedRoutes";
 import Load from "../components/shared/Load/Load";
+import { useSelector } from "react-redux";
 
-import AddAdmin from "../pages/AddAdmin/AddAdmin";
-import AddTrainer from "../pages/AddTrainer/AddTrainer";
+const LayoutRoot = React.lazy(() => import("../components/Layouts/LayoutRoot"));
+const Layout = React.lazy(() => import("../components/Layouts/Layout"));
+const Welcome = React.lazy(() => import("../pages/Welcome/Welcome"));
+const AddUser = React.lazy(() => import("../pages/AddUser/AddUser"));
 
 const Register = React.lazy(() => import("../pages/Register/Register"));
 const Login = React.lazy(() => import("../pages/Login"));
 const ResetPassword = React.lazy(() => import("../pages/ResetPassword/ResetPassword"));
 
 const App = () => {
+	const userRole = useSelector((state) => state.auth.user?.roles[0]) || null;
 	return (
 		<Router>
-			<Suspense fallback={<Load />}>
+			<Suspense fallback={<Load type={"mainLoader"} />}>
 				<Routes>
 					<Route path="/login" element={<Login />} />
 					<Route path="/register" element={<Register />} />
@@ -25,14 +28,17 @@ const App = () => {
 					<Route
 						element={
 							<ProtectedRoutes href={"/login"}>
-								{/* <LayoutRoot> */}
-								<Layout />
-								{/* </LayoutRoot> */}
+								<LayoutRoot>
+									<Layout />
+								</LayoutRoot>
 							</ProtectedRoutes>
 						}
 					>
-						<Route path="/" element={<AddAdmin />} />
-						<Route path="/addTrainer" element={<AddTrainer />} />
+						<Route path="/" element={<Welcome />} />
+						{(userRole === "ROLE_ADMIN" || userRole === "ROLE_GLOBAL_ADMIN") && (
+							<Route path="/addUser" element={<AddUser />} />
+						)}
+						<Route path="*" element={<Navigate to="/" />} />
 					</Route>
 				</Routes>
 			</Suspense>

@@ -1,0 +1,38 @@
+.Modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.336);
+	z-index: 9999999;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	.modalContentSucceeded {
+		width: 40%;
+		padding: 6rem;
+		border-radius: 2.5rem;
+		background: rgb(255, 255, 255);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		text-align: center;
+		img {
+			width: 25%;
+			margin-bottom: 4.5rems;
+		}
+		h3 {
+			font-size: 4rem;
+			font-weight: 600;
+			color: #31d0aa;
+		}
+		p {
+			font-size: 1.6rem;
+			margin-top: 2.5rem;
+			font-weight: 500;
+		}
+	}
+}

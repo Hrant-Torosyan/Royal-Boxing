@@ -64,21 +64,22 @@ export const register = createAsyncThunk(
 /**
  *   ========= RefreshToken ========= ///
  */
-export const refreshToken = createAsyncThunk(
-	"auth/refreshToken",
-	async (_, { getState, rejectWithValue }) => {
-		const { auth } = getState();
-		try {
-			const response = await axiosClient.post("/api/auth/refresh-token", {
-				refreshToken: auth.refreshToken,
-			});
-			localStorage.setItem("auth", JSON.stringify(response.data));
-			return response.data;
-		} catch (err) {
-			return rejectWithValue(err.response.data);
-		}
+export const refreshToken = createAsyncThunk("auth/refreshToken", async (_, { getState }) => {
+	const { auth } = getState();
+	try {
+		const response = await axiosClient.post("/api/auth/refresh-token", {
+			refreshToken: auth.user.refreshToken,
+		});
+		localStorage.setItem(
+			"auth",
+			JSON.stringify({ ...auth.user, accessToken: response.data.accessToken })
+		);
+		return response.data;
+	} catch (err) {
+		window.location.href = "/login";
+		throw err;
 	}
-);
+});
 
 /**
  *   ========= SendSmsRegister ========= ///
@@ -179,6 +180,15 @@ const authSlice = createSlice({
 	reducers: {
 		logout: (state) => {
 			state.user = null;
+			state.status = "idle";
+
+			state.sendSmsRegister.status = "idle";
+			state.register.status = "idle";
+			state.uploadImage.status = "idle";
+			state.changePasswordSms.status = "idle";
+			state.chechkChangePasswordSms.status = "idle";
+			state.changePassword.status = "idle";
+
 			localStorage.removeItem("auth");
 		},
 		loginSucceeded: (state) => {
@@ -186,6 +196,9 @@ const authSlice = createSlice({
 		},
 		registerSucceeded: (state) => {
 			state.register.status = "idle";
+			if (state.uploadImage.status !== "idle") {
+				state.uploadImage.status = "idle";
+			}
 		},
 		changePasswordSucceeded: (state) => {
 			state.changePassword.status = "idle";
@@ -217,7 +230,8 @@ const authSlice = createSlice({
 				state.register.error = action.payload;
 			})
 			.addCase(refreshToken.fulfilled, (state, action) => {
-				state.accessToken = action.payload.accessToken;
+				state.status = "idle";
+				state.user.accessToken = action.payload.accessToken;
 			})
 			.addCase(refreshToken.pending, (state) => {
 				state.status = "pending";

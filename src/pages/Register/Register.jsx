@@ -215,12 +215,20 @@ const Register = () => {
 			setImageError("Choose a photo");
 		}
 	}, [state.uploadImage.status]);
+
 	useEffect(() => {
 		if (state.register.status === "succeeded") {
 			dispatch(registerSucceeded());
 			navigate("/login");
+		} else if (state.register.status === "failed") {
+			if (state.register.error.message === "Error: Email is already in use!") {
+				setEmailError("Email is already in use!");
+			} else if (state.register.error.message === "Error: Global Admin already exists!") {
+				alert("Global Admin already exists!");
+				window.location.href = "/login";
+			}
 		}
-	}, [state.register.status, navigate, dispatch]);
+	}, [state.register.status, state.register.error, navigate, dispatch]);
 
 	return (
 		<div className={`flex-center authStyle`}>

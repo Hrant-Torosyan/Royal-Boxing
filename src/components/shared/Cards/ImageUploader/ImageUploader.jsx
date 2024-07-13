@@ -1,8 +1,5 @@
-import { useState } from "react";
 import "./ImageUploader.scss";
-function ImageUploader({ setImage, imageError, setImageError }) {
-	const [imageShow, setImageShow] = useState(null);
-
+function ImageUploader({ setImage, imageError, setImageError, imageShow, setImageShow }) {
 	const handleImageChange = (e) => {
 		const file = e.target.files[0];
 		if (file) {

@@ -1,8 +1,11 @@
+import React, { Suspense } from "react";
+
 import { Outlet } from "react-router";
-import { Suspense } from "react";
-import Navigation from "./Navigation/Navigation";
+
+const Navigation = React.lazy(() => import("./Navigation/Navigation"));
+
 import "./Layout.scss";
-// import Header from "./Header/Header";
+import Load from "../shared/Load/Load";
 
 const Layout = () => {
 	return (
@@ -10,9 +13,8 @@ const Layout = () => {
 			<aside>
 				<Navigation />
 			</aside>
-			{/* <Header /> */}
 			<main className="scroll">
-				<Suspense fallback={<div>Module Loader</div>}>
+				<Suspense fallback={<Load type={"moduleLoader"} />}>
 					<Outlet />
 				</Suspense>
 			</main>

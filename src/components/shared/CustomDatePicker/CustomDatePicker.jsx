@@ -6,7 +6,8 @@ import "./CustomDatePicker.scss";
 const CustomDatePicker = ({ selectedDate, setSelectedDate }) => {
 	const today = new Date();
 	const handleDateChange = (date) => {
-		const formattedDate = format(date, "yyyy-MM-dd");
+		const formattedDate = date ? format(date, "yyyy-MM-dd") : "";
+
 		setSelectedDate(formattedDate);
 	};
 	return (

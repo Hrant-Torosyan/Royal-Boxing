@@ -1,19 +1,23 @@
 import axios from "axios";
-import { logout, refreshToken } from "./slices/authSlice";
-import { store } from "./store";
-import { getUserAuth } from "../util/getAuth";
+import { refreshToken } from "./slices/authSlice";
+import store from "./store";
 
 const apiUrl = import.meta.env.VITE_BASE_URL;
-
-const token = getUserAuth()?.accessToken;
-
+const getToken = () => store.getState().auth.user?.accessToken;
 const axiosClient = axios.create({
 	baseURL: apiUrl,
 	headers: {
 		Accept: "application/json",
 		"Content-Type": "application/json",
-		Authorization: `Bearer ${token}`,
 	},
+});
+
+axiosClient.interceptors.request.use(async (config) => {
+	const token = getToken();
+	if (token) {
+		config.headers.Authorization = `Bearer ${token}`;
+	}
+	return config;
 });
 
 axiosClient.interceptors.response.use(
@@ -24,11 +28,12 @@ axiosClient.interceptors.response.use(
 			originalRequest._retry = true;
 			try {
 				await store.dispatch(refreshToken());
+				const token = getToken();
 				originalRequest.headers.Authorization = `Bearer ${token}`;
 				return axiosClient(originalRequest);
 			} catch (err) {
-				store.dispatch(logout());
-				return Promise.reject(err);
+				window.location.href = "/login";
+				throw err;
 			}
 		}
 		return Promise.reject(error);

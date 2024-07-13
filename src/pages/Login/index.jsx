@@ -8,7 +8,6 @@ import Button from "../../components/ui/Button/Button";
 import { NavLink, useNavigate } from "react-router-dom";
 const Login = () => {
 	const { status } = useSelector((state) => state.auth);
-
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const [phone, setPhone] = useState("");

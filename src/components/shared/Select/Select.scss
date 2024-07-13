@@ -1,0 +1,82 @@
+.select {
+	z-index: 999;
+	border-radius: 13px;
+	position: relative;
+	background: rgb(249, 249, 249);
+	padding: 1rem;
+	width: 100%;
+	text-align: center;
+	font-size: 1.6rem;
+	border: 2px solid transparent;
+	transition: 0.5s;
+	cursor: pointer;
+	&:focus-within,
+	&:hover {
+		border-color: rgb(255, 211, 89);
+	}
+	> p {
+		font-weight: 600;
+		font-size: 1.8rem;
+	}
+	.angle {
+		transition: 0.5s;
+		transform-origin: top;
+		position: absolute;
+		right: 1rem;
+		top: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transform: translate(0, -50%);
+	}
+
+	.selectMenu {
+		left: 0;
+		transition: 0.5s;
+		width: 100%;
+		max-height: 16rem;
+		overflow: auto;
+		background: red;
+		position: absolute;
+		z-index: 333;
+		top: 5.5rem;
+		border: 2px solid rgb(255, 211, 89);
+		box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+		border-radius: 0.5rem;
+		background: rgb(245, 245, 245);
+		transform: translate(0, 20%);
+		opacity: 0;
+
+		.selectMenuItem {
+			padding: 0.8rem 1rem;
+			cursor: pointer;
+			&:hover {
+				background: rgba(255, 211, 89, 0.766);
+			}
+		}
+		.selectMenuItem.active {
+			background: rgba(255, 211, 89, 0.766);
+		}
+	}
+}
+.openSelectAnimation {
+	overflow: visible;
+	.angle {
+		transform: rotate(-180deg);
+	}
+	.selectMenu {
+		opacity: 1 !important;
+		transform: translate(0, 0) !important;
+	}
+}
+.closeSelectAnimation {
+	animation: delayOverflow 0.7s ease forwards;
+}
+@keyframes delayOverflow {
+	from {
+		overflow: visible;
+	}
+	to {
+		overflow: hidden;
+	}
+}

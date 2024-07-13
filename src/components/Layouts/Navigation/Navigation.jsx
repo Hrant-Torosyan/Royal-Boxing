@@ -1,9 +1,13 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Navigation.scss";
 import { logout } from "../../../redux/slices/authSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useMemo } from "react";
+import Image from "../../ui/Image/Image";
 
 const Navigation = () => {
+	const userState = useSelector((state) => state.auth.user);
+	// console.log(userState);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
@@ -23,30 +27,40 @@ const Navigation = () => {
 	// 	window.location.href = "/login";
 	// };
 
-	// const btnArr = useMemo(
-	// 	() => [
-	// 		{ icon: <InvestorIcon />, title: "База инвесторов", href: "/investors" },
-	// 		{ icon: <ProjectsIcon />, title: "Проекты", href: "/projects" },
-	// 		{ icon: <PaymentsIcon />, title: "Выплаты", href: "/payments" },
-	// 		{ icon: <AccessIcon />, title: "Доступ", href: "/access" },
-	// 		{ icon: <NotificationIcon />, title: "Уведомление", href: "/notification" },
-	// 	],
-	// 	[]
-	// );
+	const formattedRole = useMemo(
+		() => userState.roles[0].replace("ROLE_", "").replace(/_/g, " "),
+		[userState.roles]
+	);
+
+	const btnArr = useMemo(() => {
+		const buttons = [{ title: "Welcome", href: "/" }];
+		if (userState.roles.includes("ROLE_ADMIN") || userState.roles.includes("ROLE_GLOBAL_ADMIN")) {
+			buttons.push({ title: "Add user", href: "/addUser" });
+		}
+		return buttons;
+	}, [userState.roles]);
 
 	return (
 		<nav className={`flex flex-column`}>
-			<ul>
-				<li>
-					<NavLink to={"./"}>AddAdmin</NavLink>
-				</li>
-				<li>
-					<NavLink to={"./addTrainer"}>AddAdmin</NavLink>
-				</li>
-				<li onClick={handleLogout}>
-					<p>asdas</p>
-				</li>
-			</ul>
+			<div>
+				<h1 className="navLogo">Royal Box&Fit</h1>
+				<div className="userInfo">
+					<h3>{formattedRole}</h3>
+					<Image url={userState.imgUrl} alt={userState.fullName + " image"} />
+					<p>{userState.fullName}</p>
+				</div>
+				<ul>
+					{btnArr.map((item, key) => (
+						<li key={key}>
+							<NavLink to={item.href}>{item.title}</NavLink>
+						</li>
+					))}
+				</ul>
+			</div>
+
+			<div className="logout" onClick={handleLogout}>
+				<p>Log out</p>
+			</div>
 		</nav>
 	);
 };
