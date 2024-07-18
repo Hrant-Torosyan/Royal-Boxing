@@ -39,6 +39,18 @@ const initialState = {
 export const login = createAsyncThunk("auth/login", async (credentials, { rejectWithValue }) => {
 	try {
 		const response = await axiosClient.post("/api/auth/signin-user", credentials);
+
+		if (response.data.roles[0] === "ROLE_USER") {
+			return rejectWithValue({
+				path: "/api/auth/signin-user",
+				method: "POST",
+				error: "Not Found",
+				message: "Bad credentials",
+				request_id: null,
+				timestamp: "2024-07-18T15:48:18.172256137Z",
+				status: "404",
+			});
+		}
 		localStorage.setItem("auth", JSON.stringify(response.data));
 		return response.data;
 	} catch (err) {
