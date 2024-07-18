@@ -1,5 +1,16 @@
 .inputStyle {
-	// overflow: hidden;
+	input::-ms-reveal,
+	input::-ms-clear {
+		display: none;
+	}
+
+	input[type="password"]::-webkit-textfield-decoration-container {
+		display: none;
+	}
+
+	input[type="password"]::-webkit-credentials-auto-fill-button {
+		display: none !important;
+	}
 
 	h3 {
 		color: rgba(0, 0, 0, 0.8);

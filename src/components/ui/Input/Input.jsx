@@ -3,6 +3,10 @@ import style from "./Input.module.scss";
 
 const _countryCode = [
 	{
+		imgUrl: "UA",
+		phoneCode: "380",
+	},
+	{
 		imgUrl: "AE",
 		phoneCode: "971",
 	},
@@ -662,6 +666,9 @@ const Input = ({
 					placeholder={placeholder}
 					type={eye ? type : "text"}
 					onChange={handleChange}
+					autoComplete="off"
+					spellCheck="false"
+					aria-autocomplete="none"
 				/>
 				{type === "password" && (
 					<>
