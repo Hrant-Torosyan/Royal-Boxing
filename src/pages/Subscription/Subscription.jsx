@@ -13,54 +13,7 @@ const categories = [
 ];
 
 const subscriptionArr = [
-	{
-		category: "SILVER",
-		name: "Royal Pass 1",
-		id: 1,
-		imageUrl: "/Images/CardSub.png",
-		sessions: [
-			{
-				imgUrl: "./Images/Rectangle1.png",
-				alt: "image",
-				name: "Boxing1",
-				company: "GROUPTRANING",
-				sessionsNumber: 220,
-				sessionTime: 60,
-			},
-			{
-				imgUrl: "./Images/Rectangle1.png",
-				alt: "image",
-				name: "Boxing1",
-				company: "GROUPTRANING",
-				sessionsNumber: 5,
-				sessionTime: 30,
-			},
-		],
-	},
-	{
-		category: "GOLD",
-		name: "Royal Pass 2",
-		id: 2,
-		imageUrl: "/Images/CardSub.png",
-		sessions: [
-			{
-				imgUrl: "./Images/Rectangle1.png",
-				alt: "image",
-				name: "Boxing11",
-				company: "MASSAGE",
-				sessionsNumber: 20,
-				sessionTime: 60,
-			},
-			{
-				imgUrl: "./Images/Rectangle1.png",
-				alt: "image",
-				name: "Boxing1",
-				company: "GROUPTRANING",
-				sessionsNumber: 5,
-				sessionTime: 30,
-			},
-		],
-	},
+
 	{
 		category: "GOLD_PLUS",
 		name: "Royal Pass 3",
@@ -85,54 +38,7 @@ const subscriptionArr = [
 			},
 		],
 	},
-	{
-		category: "OTHER",
-		name: "Royal Pass 4",
-		id: 4,
-		imageUrl: "/Images/CardSub.png",
-		sessions: [
-			{
-				imgUrl: "./Images/Rectangle1.png",
-				alt: "image",
-				name: "Boxing1",
-				company: "GROUPTRANING",
-				sessionsNumber: 20,
-				sessionTime: 60,
-			},
-			{
-				imgUrl: "./Images/Rectangle1.png",
-				alt: "image",
-				name: "Boxing1",
-				company: "GROUPTRANING",
-				sessionsNumber: 5,
-				sessionTime: 30,
-			},
-		],
-	},
-	{
-		category: "OTHER",
-		name: "Royal Pass 5",
-		id: 5,
-		imageUrl: "/Images/CardSub.png",
-		sessions: [
-			{
-				imgUrl: "./Images/Rectangle1.png",
-				alt: "image",
-				name: "Boxing1",
-				company: "GROUPTRANING",
-				sessionsNumber: 20,
-				sessionTime: 60,
-			},
-			{
-				imgUrl: "./Images/Rectangle1.png",
-				alt: "image",
-				name: "Boxing1",
-				company: "GROUPTRANING",
-				sessionsNumber: 5,
-				sessionTime: 30,
-			},
-		],
-	},
+	
 ];
 
 const Subscription = () => {

@@ -58,7 +58,7 @@ const SubscriptionCard = ({
 						<div className="subscriptionCardInfo">
 							<div className="contentItem">
 								<h4 className="contentItemTitle">
-									Actively <span>7 days</span>
+									GOLD <span>PLUS</span>
 								</h4>
 								<p className="contentItemInfo">
 									<span>1</span> Small group training
