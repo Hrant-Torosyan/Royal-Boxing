@@ -1,12 +1,15 @@
 import { useState } from "react";
 import "./Select.scss";
 
-const Select = ({ selectContent, select, setSelect }) => {
+const Select = ({ selectContent, select, setSelect, styleType = null }) => {
 	const [openSelect, setOpenSelect] = useState(false);
+
 	return (
 		<div
 			onClick={() => setOpenSelect(!openSelect)}
-			className={`${openSelect ? "openSelectAnimation" : "closeSelectAnimation"} select`}
+			className={`${openSelect ? "openSelectAnimation" : "closeSelectAnimation"} select ${
+				styleType === "DARK" ? "dark" : ""
+			}`}
 		>
 			<p>{select}</p>
 			<div className="angle">

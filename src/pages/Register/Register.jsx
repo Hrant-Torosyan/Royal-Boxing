@@ -124,6 +124,7 @@ const Register = () => {
 
 	const [image, setImage] = useState("");
 	const [imageError, setImageError] = useState("");
+	const [imageShow, setImageShow] = useState("");
 
 	const [name, setName] = useState("");
 	const [nameError, setNameError] = useState("");
@@ -244,7 +245,7 @@ const Register = () => {
 						setError={setCodeError}
 					/>
 					<div className={`flex-center buttonList`}>
-						<Button darkStyle={true} title={"Continue"} />
+						<Button styleBtn={"DARK"} title={"Continue"} />
 					</div>
 				</AuthCard>
 			) : step === 1 ? (
@@ -283,7 +284,7 @@ const Register = () => {
 					/>
 					<div className={`flex-center buttonList`}>
 						<Button
-							darkStyle={true}
+							styleBtn={"DARK"}
 							disabled={state.sendSmsRegister.status === "pending" && true}
 							title={"Continue"}
 						/>
@@ -310,7 +311,7 @@ const Register = () => {
 					</div>
 					<ResendPin sendAgin={() => dispatch(sendSmsRegister(number))} />
 					<div className={`flex-center buttonList`}>
-						<Button darkStyle={true} disabled={isInputEmpty && true} title={"Continue"} />
+						<Button styleBtn={"DARK"} disabled={isInputEmpty && true} title={"Continue"} />
 					</div>
 				</AuthCard>
 			) : (
@@ -320,6 +321,8 @@ const Register = () => {
 						setImageError={setImageError}
 						setImage={setImage}
 						imageUrl={image}
+						imageShow={imageShow}
+						setImageShow={setImageShow}
 					/>
 					<Input
 						inpVal={name}
@@ -397,7 +400,7 @@ const Register = () => {
 					</div>
 					<div className={`flex-center buttonList`}>
 						<Button
-							darkStyle={true}
+							styleBtn={"DARK"}
 							disabled={
 								state.uploadImage.status === "pending" ||
 								(state.register.status === "pending" && true)

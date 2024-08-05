@@ -64,8 +64,8 @@ const Login = () => {
 					<NavLink to={"/resetPassword"}>Restore password</NavLink>
 				</div>
 				<div className={`flex-center buttons`}>
-					<Button href={"/register"} darkStyle={true} title={"Registration"} />
-					<Button disabled={status === "pending" && true} title={"Log in"} />
+					<Button styleBtn={"DARK"} disabled={status === "pending" && true} title={"Log in"} />
+					<Button href={"/register"} styleBtn={"LIGHT"} title={"Registration"} />
 				</div>
 			</AuthCard>
 		</div>

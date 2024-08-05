@@ -35,7 +35,16 @@ const Navigation = () => {
 	const btnArr = useMemo(() => {
 		const buttons = [{ title: "Welcome", href: "/" }];
 		if (userState.roles.includes("ROLE_ADMIN") || userState.roles.includes("ROLE_GLOBAL_ADMIN")) {
-			buttons.push({ title: "Add user", href: "/addUser" });
+			buttons.push(
+				{ title: "Add user", href: "/addUser" },
+				{ title: "Offer", href: "/offer" },
+				{ title: "Trainer", href: "/trainer" },
+				{ title: "Services", href: "/services" },
+				{ title: "Subscription", href: "/subscription" },
+				{ title: "Shop", href: "/shop" },
+				{ title: "Royal shop", href: "/royalShop" },
+				{ title: "Caffe", href: "/caffe" }
+			);
 		}
 		return buttons;
 	}, [userState.roles]);
@@ -46,7 +55,7 @@ const Navigation = () => {
 				<h1 className="navLogo">Royal Box&Fit</h1>
 				<div className="userInfo">
 					<h3>{formattedRole}</h3>
-					<Image url={userState.imgUrl} alt={userState.fullName + " image"} />
+					<Image type={"user"} url={userState.imgUrl} alt={userState.fullName + " image"} />
 					<p>{userState.fullName}</p>
 				</div>
 				<ul>

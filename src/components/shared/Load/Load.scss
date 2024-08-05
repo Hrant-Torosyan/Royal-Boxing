@@ -5,6 +5,7 @@
 	width: 100%;
 	height: 100vh;
 	position: fixed;
+	z-index: 9999999;
 	top: 0;
 	left: 0;
 	background: #f3be10;
@@ -24,4 +25,29 @@
 		width: 50rem;
 		height: 50rem;
 	}
+}
+
+#modalLoader {
+	position: fixed;
+
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: rgba(0, 0, 0, 0.136);
+	transition: 0.5s;
+	z-index: 9999999;
+	img {
+		box-shadow: 0px 1px 15px 0px #f3be10;
+		border: 1px solid #f3be10;
+		border-radius: 50%;
+		width: 30rem;
+		height: 30rem;
+	}
+}
+
+.imageLoader {
+	width: 100%;
+	height: 100%;
 }

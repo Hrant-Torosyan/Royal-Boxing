@@ -157,7 +157,7 @@ const ResetPassword = () => {
 						setError={setCodeError}
 					/>
 					<div className={`flex-center buttonList`}>
-						<Button darkStyle={true} title={"Continue"} />
+						<Button styleBtn={"DARK"} title={"Continue"} />
 					</div>
 				</AuthCard>
 			) : step === 1 ? (
@@ -175,7 +175,7 @@ const ResetPassword = () => {
 
 					<div className={`flex-center buttonList`}>
 						<Button
-							darkStyle={true}
+							styleBtn={"DARK"}
 							disabled={state.changePasswordSms.status === "pending" && true}
 							title={"Continue"}
 						/>
@@ -205,8 +205,7 @@ const ResetPassword = () => {
 
 					<div className={`flex-center buttonList`}>
 						<Button
-							darkStyle={true}
-							// disabled={state.chechkChangePasswordSms.status === "pending"}
+							styleBtn={"DARK"}
 							disabled={
 								(isInputEmpty && true) || state.chechkChangePasswordSms.status === "pending"
 							}
@@ -236,7 +235,7 @@ const ResetPassword = () => {
 					/>
 					<div className={`flex-center buttonList`}>
 						<Button
-							darkStyle={true}
+							styleBtn={"DARK"}
 							disabled={state.changePassword.status === "pending" && true}
 							title={"Reset"}
 						/>

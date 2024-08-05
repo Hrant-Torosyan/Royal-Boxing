@@ -1,0 +1,128 @@
+.services {
+	.servicesCategory {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		.servicesCategoryButtons {
+			> div {
+				margin-right: 1.6rem;
+			}
+		}
+	}
+
+	.serviceCardBox {
+		display: flex;
+		justify-content: space-between;
+
+		flex-wrap: wrap;
+		gap: 5rem;
+		margin-top: 8rem;
+	}
+}
+.addService {
+	.inputContainer {
+		width: 45%;
+		.buttonList {
+			margin-top: 3rem;
+			> div {
+				margin-right: 2rem;
+			}
+		}
+	}
+}
+
+.editService {
+	.inputContainer {
+		display: flex;
+		justify-content: space-between;
+		width: 85%;
+
+		.inputContainerText,
+		.inputContainerItem {
+			width: 48%;
+		}
+		.buttonList {
+			margin-top: 3rem;
+			> div {
+				margin-right: 2rem;
+			}
+		}
+	}
+	.line {
+		width: 100%;
+		border-top: 2px solid black;
+		margin: 3rem 0;
+	}
+
+	.sessionsBlcok {
+		width: 85%;
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 10rem;
+		margin-top: 5rem;
+		.sessionItem {
+			flex: 0 1 calc(50% - 10rem);
+			padding: 1rem;
+			border-radius: 1.2rem;
+			box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+			background: rgb(255, 255, 255);
+			.sessionItemHeader {
+				display: flex;
+				justify-content: space-between;
+				.title {
+					color: rgb(0, 0, 0);
+					font-size: 18px;
+					font-weight: 500;
+					margin-left: auto;
+				}
+				.edit {
+					margin-left: auto;
+					cursor: pointer;
+					transition: 0.5s;
+					border-radius: 0.4rem;
+					padding: 0.3rem;
+
+					&:hover {
+						box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+					}
+				}
+			}
+			.sessionItemContent {
+				margin-top: 2rem;
+				.sessionItemContentList {
+					&:first-child {
+						padding-right: 6rem;
+					}
+					&:last-child {
+						padding-left: 6rem;
+					}
+					display: flex;
+					justify-content: space-between;
+					.sessionItemContentItem {
+						width: 9rem;
+						height: 9rem;
+						border: 1px solid black;
+						border-radius: 50%;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						flex-direction: column;
+						p {
+							color: rgba(34, 34, 34, 0.7);
+							font-size: 1.2rem;
+							font-weight: 400;
+							text-align: center;
+						}
+						h5 {
+							color: rgb(34, 34, 34);
+							font-size: 1.6rem;
+							font-weight: 400;
+							text-align: center;
+						}
+					}
+				}
+			}
+		}
+	}
+}

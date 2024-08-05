@@ -59,6 +59,14 @@
 		}
 	}
 }
+
+.dark {
+	background: rgb(231, 231, 231);
+	> p {
+		font-size: 1.6rem;
+		font-weight: 400;
+	}
+}
 .openSelectAnimation {
 	overflow: visible;
 	.angle {

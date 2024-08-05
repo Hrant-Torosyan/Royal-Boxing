@@ -19,7 +19,23 @@ const Load = ({ type }) => {
 			</div>
 		);
 	} else if (type === "modalLoader") {
-		return <div id="modalLoader">modalLoader</div>;
+		return (
+			<div id="modalLoader">
+				<img
+					src="https://cdn-images-1.medium.com/max/691/1*JWRrHmGBM_DxatdKk6qBnA.gif"
+					alt="PreLoader"
+				/>
+			</div>
+		);
+	} else if (type === "imageLoader") {
+		return (
+			<div id="imageLoader">
+				<img
+					src="https://cdn-images-1.medium.com/max/691/1*JWRrHmGBM_DxatdKk6qBnA.gif"
+					alt="PreLoader"
+				/>
+			</div>
+		);
 	}
 };
 

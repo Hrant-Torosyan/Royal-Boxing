@@ -1,0 +1,68 @@
+.imagesUploader {
+	#imageUpload {
+		display: none !important;
+	}
+	.errorText {
+		color: #ff0000 !important;
+		font-size: 1.6rem;
+		padding-bottom: 0.5rem;
+		margin-top: 0.5rem;
+	}
+	.imagesUploader {
+		display: flex;
+		.imagesUploaderAdd {
+			width: 18rem;
+			height: 18rem;
+			cursor: pointer;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-radius: 1.6rem;
+			overflow: hidden;
+			transition: 0.5s;
+			background: rgb(231, 231, 231);
+			&:hover {
+				background: rgb(210, 210, 210);
+			}
+			img {
+				width: 30%;
+				height: auto;
+			}
+			.imagesUploaderAddImage {
+				width: 100%;
+				height: 100%;
+			}
+		}
+		.imagesUploaderShow {
+			width: 18rem;
+			height: 18rem;
+			border-radius: 1.6rem;
+			margin-left: 1rem;
+			overflow: hidden;
+			position: relative;
+			&:hover {
+				.imagesUploaderDel {
+					opacity: 1;
+				}
+			}
+			.imagesUploaderDel {
+				position: absolute;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				cursor: pointer;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				transition: 0.5s;
+				left: 0;
+				opacity: 0;
+				background: #ff3d3d87;
+				img {
+					width: 50%;
+					height: auto;
+				}
+			}
+		}
+	}
+}

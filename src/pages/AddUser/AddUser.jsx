@@ -303,7 +303,7 @@ const AddUser = () => {
 				</div>
 				<div className={`flex-center buttonList`}>
 					<Button
-						darkStyle={true}
+						styleBtn={"DARK"}
 						disabled={
 							state.uploadImage.status === "pending" ||
 							(state.register.status === "pending" && true)

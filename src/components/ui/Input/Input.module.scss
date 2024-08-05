@@ -3,7 +3,6 @@
 	input::-ms-clear {
 		display: none;
 	}
-
 	input[type="password"]::-webkit-textfield-decoration-container {
 		display: none;
 	}
@@ -18,29 +17,30 @@
 		padding-bottom: 0.5rem;
 		margin-top: 1rem;
 	}
-	.errorText {
+	h3.errorText {
 		color: #ff0000 !important;
 	}
 
-	input {
-		border-radius: 13px;
-		background: rgb(249, 249, 249);
-		padding: 1rem;
-		width: 100%;
-		text-align: center;
-		font-size: 1.6rem;
-		border: 2px solid transparent;
-		transition: 0.5s;
-		&:focus-within,
-		&:hover {
-			border-color: rgb(255, 211, 89);
-		}
-	}
-	.inpError {
-		border-color: #ff0000 !important;
-	}
 	.inputBox {
 		position: relative;
+
+		input {
+			border-radius: 13px;
+			background: rgb(249, 249, 249);
+			padding: 1rem;
+			width: 100%;
+			text-align: center;
+			font-size: 1.6rem;
+			border: 2px solid transparent;
+			transition: 0.5s;
+			&:focus-within,
+			&:hover {
+				border-color: rgb(255, 211, 89);
+			}
+		}
+		.inpError {
+			border-color: #ff0000 !important;
+		}
 		.eye {
 			cursor: pointer;
 			right: 1rem;
@@ -127,6 +127,42 @@
 					}
 				}
 			}
+		}
+	}
+
+	.textareaBox {
+		textarea {
+			border-radius: 13px;
+			background: rgb(249, 249, 249);
+			padding: 1rem;
+			width: 100%;
+			text-align: center;
+			font-size: 1.6rem;
+			border: 2px solid transparent;
+			transition: 0.5s;
+			height: 11.5rem;
+			&:focus-within,
+			&:hover {
+				border-color: rgb(255, 211, 89);
+			}
+		}
+		.textareaError {
+			border-color: #ff0000 !important;
+		}
+	}
+}
+
+.inputStyle.dark {
+	.textareaBox {
+		textarea {
+			background: rgb(231, 231, 231);
+			text-align: left;
+		}
+	}
+	.inputBox {
+		input {
+			text-align: left;
+			background: rgb(231, 231, 231);
 		}
 	}
 }

@@ -210,6 +210,7 @@ const authSlice = createSlice({
 			state.register.status = "idle";
 			if (state.uploadImage.status !== "idle") {
 				state.uploadImage.status = "idle";
+				state.uploadImage.imageUrl = null;
 			}
 		},
 		changePasswordSucceeded: (state) => {

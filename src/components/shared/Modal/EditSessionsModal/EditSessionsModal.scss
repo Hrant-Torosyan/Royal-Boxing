@@ -1,0 +1,51 @@
+.editSessionsModal {
+	.timeBlock {
+		display: flex;
+		align-items: end;
+		justify-content: space-between;
+		> div {
+			width: 48%;
+		}
+	}
+	.buttonBox {
+		display: flex;
+		justify-content: center;
+		gap: 3rem;
+		margin-top: 3rem;
+	}
+}
+.deleteInfo {
+	position: absolute;
+	width: 100%;
+	z-index: 9999;
+	top: 0;
+	left: 0;
+	height: 100%;
+	backdrop-filter: blur(8px);
+	background: rgba(255, 255, 255, 0.1);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	.deleteInfoItem {
+		border-radius: 1.2rem;
+		width: 80%;
+		padding: 4rem 0;
+		box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+		background: rgb(255, 255, 255);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		h5 {
+			color: rgb(0, 0, 0);
+			font-size: 2.2rem;
+			font-weight: 500;
+		}
+		.deleteInfoIteBtns {
+			display: flex;
+			margin-top: 4rem;
+			gap: 4rem;
+		}
+	}
+}

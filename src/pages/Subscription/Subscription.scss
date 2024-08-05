@@ -1,0 +1,148 @@
+.subscription {
+	.subscriptionCategoryButtons {
+		> div {
+			margin-right: 1.6rem;
+		}
+		margin-bottom: 3rem;
+	}
+	.subscriptionContainer {
+		width: 85%;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		gap: 6rem;
+	}
+}
+
+.addSubscription,
+.editSubscriptionBlock {
+	display: flex;
+	justify-content: space-between;
+	> form {
+		width: 40%;
+	}
+	h3 {
+		color: rgba(0, 0, 0, 0.8);
+		font-size: 1.6rem;
+		padding-bottom: 0.5rem;
+		margin-top: 1rem;
+	}
+	.errorText {
+		color: #ff0000 !important;
+	}
+	.addSubscriptionPeriod {
+		> div > div {
+			width: 48%;
+		}
+	}
+	.buttonList {
+		margin-top: 2rem;
+		> div {
+			margin-right: 2rem;
+		}
+	}
+	.connectServices {
+		width: 45%;
+		.connectServicesBtn {
+			width: 100%;
+			> button {
+				width: 100%;
+				text-align: center;
+			}
+		}
+
+		.connectServicesList {
+			.connectServicesItem {
+				margin: 2rem 0;
+
+				.connectServicesItemContent {
+					display: flex;
+					height: 9rem;
+					width: 100%;
+					box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+					border-radius: 1.2rem;
+					padding: 0.5rem;
+					margin-bottom: 1rem;
+					justify-content: space-between;
+					.connectServicesItemService {
+						display: flex;
+						flex: none;
+						align-items: center;
+						.serviceCardImg {
+							margin-right: 1rem;
+							height: 100%;
+							#imageLoader {
+								width: 100%;
+								height: 100%;
+							}
+						}
+						.serviceCardInfo {
+							p {
+								color: rgba(0, 0, 0, 0.66);
+							}
+						}
+					}
+					.connectServicesItemContentInfo {
+						// width: 100%;
+						height: 100%;
+						display: flex;
+						flex-direction: column;
+						align-items: center;
+						justify-content: center;
+						p {
+							color: rgba(0, 0, 0, 0.66);
+							font-size: 1.1rem;
+							font-weight: 400;
+						}
+						h4 {
+							font-size: 1.6rem;
+						}
+					}
+				}
+
+				.connectServicesItemBtns {
+					display: flex;
+					gap: 2rem;
+				}
+			}
+		}
+	}
+}
+
+.editSubscription {
+	.deleteInfo {
+		position: absolute;
+		width: 100%;
+		z-index: 9999;
+		top: 0;
+		left: 0;
+		height: 100%;
+		backdrop-filter: blur(8px);
+		background: rgba(255, 255, 255, 0.1);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		.deleteInfoItem {
+			border-radius: 1.2rem;
+			width: 35%;
+			padding: 4rem 0;
+			box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+			background: rgb(255, 255, 255);
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			h5 {
+				color: rgb(0, 0, 0);
+				font-size: 2.2rem;
+				font-weight: 500;
+			}
+			.deleteInfoIteBtns {
+				display: flex;
+				margin-top: 4rem;
+				gap: 4rem;
+			}
+		}
+	}
+}
