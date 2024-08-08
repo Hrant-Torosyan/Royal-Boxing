@@ -1,18 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./EditSessionsModal.scss";
 import Input from "../../../ui/Input/Input";
 import CustomDatePicker from "../../CustomDatePicker/CustomDatePicker";
 import Button from "../../../ui/Button/Button";
 import Select from "../../../shared/Select/Select";
-import { useDispatch } from "react-redux";
-import { updateServiceSessions } from "../../../../redux/slices/servicesSlice";
-import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { closeEditSessionsModal } from "../../../../redux/slices/modalSlice";
+import {
+	deleteSession,
+	deleteSessionSucceeded,
+	updateSession,
+	updateSessionSucceeded,
+} from "../../../../redux/slices/servicesSlice";
+import { useParams } from "react-router-dom";
 
 const EditSessionsModal = ({ sessionObj }) => {
-	const { category } = useParams();
-
 	const dispatch = useDispatch();
+	const { category } = useParams();
+	const services = useSelector((state) => state.services);
 
 	const [deleteInfo, setDeleteInfo] = useState(false);
 
@@ -74,13 +79,11 @@ const EditSessionsModal = ({ sessionObj }) => {
 			setPriceError("Fill in this field");
 			return;
 		}
-
 		dispatch(
-			updateServiceSessions({
-				type: "EDIT",
+			updateSession({
 				serviceID: category,
-				newSessions: {
-					id: sessionObj.id,
+				id: sessionObj.id,
+				credentials: {
 					name: name,
 					sessions_count: session,
 					viev: view,
@@ -91,9 +94,22 @@ const EditSessionsModal = ({ sessionObj }) => {
 				},
 			})
 		);
-
-		dispatch(closeEditSessionsModal());
 	};
+
+	useEffect(() => {
+		if (services.updateSession.status === "succeeded") {
+			dispatch(updateSessionSucceeded());
+			dispatch(closeEditSessionsModal());
+		}
+	}, [services.updateSession, dispatch]);
+
+	useEffect(() => {
+		if (services.deleteSession.status === "succeeded") {
+			dispatch(deleteSessionSucceeded());
+			dispatch(closeEditSessionsModal());
+		}
+	}, [services.deleteSession, dispatch]);
+
 	return (
 		<>
 			{deleteInfo && (
@@ -102,7 +118,11 @@ const EditSessionsModal = ({ sessionObj }) => {
 						<h5>Are you sure you want to delete the session?</h5>
 						<div className="deleteInfoIteBtns">
 							<Button
-								onClick={() => console.log("delete")}
+								onClick={() =>
+									dispatch(
+										deleteSession({ sessionID: sessionObj.id, serviceID: category })
+									)
+								}
 								styleBtn={"DEL"}
 								disabled={false}
 								title={"Delete"}
@@ -208,7 +228,11 @@ const EditSessionsModal = ({ sessionObj }) => {
 						type={"button"}
 						title={"Delete"}
 					/>
-					<Button styleBtn={"DARK"} disabled={false} title={"Save"} />
+					<Button
+						styleBtn={"DARK"}
+						disabled={services.updateSession.status === "pending"}
+						title={"Save"}
+					/>
 				</div>
 			</form>
 		</>

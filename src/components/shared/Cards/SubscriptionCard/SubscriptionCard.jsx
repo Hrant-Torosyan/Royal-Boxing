@@ -1,6 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import "./SubscriptionCard.scss";
-import { useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+	uploadSubscriptionImage,
+	uploadSubscriptionImageSucceeded,
+} from "../../../../redux/slices/subscriptionSlice";
+import Image from "../../../ui/Image/Image";
 const SubscriptionCard = ({
 	type = null,
 	image = null,
@@ -9,25 +15,33 @@ const SubscriptionCard = ({
 	href = null,
 	name = null,
 	imageUrl = null,
+	price = null,
 }) => {
+	const dispatch = useDispatch();
+	const uploadImage = useSelector((state) => state.subscriptions.uploadSubscriptionImage);
 	const navigate = useNavigate();
-	const [imageShow, setImageShow] = useState(null);
+
 	const handleImageChange = (e) => {
+		setImageError(null);
+
 		const file = e.target.files[0];
 		if (file) {
 			if (file.size > 10 * 1024 * 1024) {
 				setImageError("The file size must not exceed 10 MB.");
 			} else {
-				setImageError(null);
-				const reader = new FileReader();
-				reader.onloadend = () => {
-					setImageShow(reader.result);
-					setImage(file);
-				};
-				reader.readAsDataURL(file);
+				dispatch(uploadSubscriptionImage(file));
 			}
 		}
 	};
+
+	useEffect(() => {
+		if (uploadImage.status === "failed") {
+			setImageError("Error loading image");
+		} else if (uploadImage.status === "succeeded" && uploadImage.uploadedSubscriptionImageUrl) {
+			setImage(uploadImage.uploadedSubscriptionImageUrl);
+			dispatch(uploadSubscriptionImageSucceeded());
+		}
+	}, [dispatch, setImage, setImageError, uploadImage]);
 
 	return (
 		<div className="subscriptionCardbox">
@@ -53,7 +67,7 @@ const SubscriptionCard = ({
 						</div>
 					</div>
 					<div className={`subscriptionCard `}>
-						<img src={imageUrl} alt="" />
+						<Image url={imageUrl} alt={`Card`} />
 
 						<div className="subscriptionCardInfo">
 							<div className="contentItem">
@@ -71,7 +85,7 @@ const SubscriptionCard = ({
 								</p>
 							</div>
 							<div className="subscriptionCardBtn">
-								<p>399 AED</p>
+								<p>{price} AED</p>
 							</div>
 						</div>
 					</div>
@@ -79,11 +93,9 @@ const SubscriptionCard = ({
 			) : (
 				<div className={`subscriptionCard`}>
 					<div className="subscriptionImageUpload">
-						{(imageShow || image) && (
-							<img src={imageShow ? imageShow : image} alt="Preview" />
-						)}
+						{image && <Image url={image} alt={`Preview`} />}
 						<label>
-							<div className={`subscriptionImageUploadFon ${imageShow ? "active" : ""}`}>
+							<div className={`subscriptionImageUploadFon ${image ? "active" : ""}`}>
 								<img src="/Images/addPhoto.png" alt="Add Photo" />
 							</div>
 							<input type="file" accept="image/*" onChange={handleImageChange} />

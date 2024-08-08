@@ -13,10 +13,12 @@ const initialState = {
 	},
 	connectServiceSubModal: {
 		status: "idle",
+		subscriptionObj: null,
 	},
 	connectSessionSubModal: {
-		type: null,
 		status: "idle",
+		type: null,
+		subscriptionId: null,
 		serviceObj: null,
 	},
 };
@@ -45,21 +47,25 @@ const modalSlice = createSlice({
 			state.editSessionsModal.status = "idle";
 			state.editSessionsModal.sessionObj = null;
 		},
-		openConnectServiceSubModal: (state) => {
+		openConnectServiceSubModal: (state, action) => {
 			state.connectServiceSubModal.status = "open";
+			state.connectServiceSubModal.subscriptionObj = action.payload;
 		},
 		closeConnectServiceSubModal: (state) => {
 			state.connectServiceSubModal.status = "idle";
+			state.connectServiceSubModal.subscriptionObj = null;
 		},
 		openConnectSessionSubModal: (state, action) => {
 			state.connectSessionSubModal.status = "open";
 			state.connectSessionSubModal.serviceObj = action.payload.serviceObj;
 			state.connectSessionSubModal.type = action.payload.type;
+			state.connectSessionSubModal.subscriptionId = action.payload.subscriptionId;
 		},
 		closeConnectSessionSubModal: (state) => {
 			state.connectSessionSubModal.status = "idle";
 			state.connectSessionSubModal.serviceObj = null;
 			state.connectSessionSubModal.type = null;
+			state.connectSessionSubModal.subscriptionId = null;
 		},
 	},
 });

@@ -5,6 +5,7 @@
 	.serviceCardImg {
 		img {
 			border-radius: 1.6rem;
+			height: 30rem;
 		}
 	}
 	.serviceCardInfo {
@@ -24,6 +25,11 @@
 
 .serviceCard.SM {
 	flex: 0 1 calc(34% - 3rem);
+	.serviceCardImg {
+		img {
+			height: 18rem;
+		}
+	}
 	.serviceCardInfo {
 		h5 {
 			font-size: 1.6rem;

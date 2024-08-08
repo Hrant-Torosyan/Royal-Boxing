@@ -6,9 +6,14 @@ import { useEffect, useState } from "react";
 import "./Services.scss";
 import ImagesUploader from "../../components/shared/Cards/ImagesUploader/ImagesUploader";
 import { useDispatch, useSelector } from "react-redux";
-import { createService, createServiceSucceeded } from "../../redux/slices/servicesSlice";
+import {
+	createService,
+	createServiceSucceeded,
+	getServices,
+} from "../../redux/slices/servicesSlice";
 import { getServicesCategory } from "../../util/getServicesCategory";
 import { openSucceededModal } from "../../redux/slices/modalSlice";
+import { customLoweCase } from "../../util/customLoweCase";
 const categories = getServicesCategory();
 
 const AddService = () => {
@@ -51,8 +56,8 @@ const AddService = () => {
 			createService({
 				name: name,
 				description: description,
+				img_url: images.map((image) => image.img_url),
 				services_type: category,
-				img_url: "aaaa",
 			})
 		);
 	};
@@ -60,16 +65,14 @@ const AddService = () => {
 	useEffect(() => {
 		if (status === "succeeded") {
 			dispatch(createServiceSucceeded());
+			dispatch(getServices());
 			dispatch(openSucceededModal());
-			setTimeout(() => {
-				navigate("/services");
-			}, 5000);
+			navigate("/services");
 		}
 	}, [dispatch, status, navigate]);
-
 	return (
 		<div className="addService">
-			<Title back={() => navigate("/services")} title={`Add ${category}`} />
+			<Title back={() => navigate("/services")} title={`Add ${customLoweCase(category)}`} />
 			<form onSubmit={handleAddService}>
 				<ImagesUploader
 					setImagesError={setImagesError}

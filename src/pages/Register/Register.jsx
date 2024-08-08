@@ -14,6 +14,7 @@ import {
 } from "../../redux/slices/authSlice";
 import { useNavigate } from "react-router-dom";
 import CustomDatePicker from "../../components/shared/CustomDatePicker/CustomDatePicker";
+import { getCounrtyCodes } from "../../util/getCounrtyCodes";
 const _code = import.meta.env.VITE_BASE_CODE;
 
 const Register = () => {
@@ -61,12 +62,25 @@ const Register = () => {
 			setNumberError("Fill in this field");
 			return;
 		}
+
+		let phoneNumberInfo = getCounrtyCodes(number);
+		if (number.trim().length !== phoneNumberInfo.phoneNumberLengthWithCode) {
+			setNumberError(
+				`Phone number must be at least ${phoneNumberInfo.phoneNumberLength} characters long`
+			);
+			return;
+		}
 		if (!password.trim()) {
 			setPasswordError("Fill in this field");
 			return;
 		}
 		if (password.trim().length < 8) {
 			setPasswordError("Password must be at least 8 characters");
+			return;
+		}
+		const hasNumber = /\d/;
+		if (!hasNumber.test(password)) {
+			setPasswordError("Password must contain at least one number");
 			return;
 		}
 		if (!resetPassword.trim()) {

@@ -5,12 +5,13 @@ import "./Services.scss";
 import ServiceCard from "../../components/shared/Cards/ServiceCard/ServiceCard";
 import { getServicesCategory } from "../../util/getServicesCategory";
 import { useSelector } from "react-redux";
+import { customLoweCase } from "../../util/customLoweCase";
 const categories = getServicesCategory();
 
 const Services = () => {
 	const { allServices } = useSelector((state) => state.services);
 
-	const [category, setCategory] = useState("GROUP_TRANING");
+	const [category, setCategory] = useState("GROUP_TRAINING");
 	return (
 		<div className="services">
 			<Title title={"Services"} />
@@ -35,16 +36,20 @@ const Services = () => {
 				/>
 			</div>
 			<div className="serviceCardBox">
-				{allServices.map((item, key) => (
-					<ServiceCard
-						key={key}
-						imgUrl={item?.img_url}
-						name={item.name}
-						company={item?.company}
-						href={`/services/editService/${item.id}`}
-						id={item.id}
-					/>
-				))}
+				{allServices.length > 0 ? (
+					allServices.map((item, key) => (
+						<ServiceCard
+							key={key}
+							imgUrl={item?.images && item?.images[0]?.img_url}
+							name={item.name}
+							company={item?.services_type && customLoweCase(item?.services_type)}
+							href={`/services/editService/${item.id}`}
+							id={item.id}
+						/>
+					))
+				) : (
+					<div className="emptyInfo">No services available</div>
+				)}
 			</div>
 		</div>
 	);

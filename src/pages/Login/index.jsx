@@ -6,6 +6,7 @@ import Input from "../../components/ui/Input/Input";
 import { useEffect, useState } from "react";
 import Button from "../../components/ui/Button/Button";
 import { NavLink, useNavigate } from "react-router-dom";
+
 const Login = () => {
 	const { status } = useSelector((state) => state.auth);
 	const navigate = useNavigate();
@@ -16,6 +17,7 @@ const Login = () => {
 	const [passwordError, setPasswordError] = useState(null);
 	const handleSubmit = (e) => {
 		e.preventDefault();
+
 		if (!phone.trim()) {
 			setPhoneError("Fill in this field");
 			return;

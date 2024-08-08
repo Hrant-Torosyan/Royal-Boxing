@@ -7,11 +7,19 @@ import Button from "../../components/ui/Button/Button";
 import "./Services.scss";
 import AddSession from "./AddSession";
 import { useDispatch, useSelector } from "react-redux";
-import { updateService, updateServiceSucceeded } from "../../redux/slices/servicesSlice";
+import {
+	deleteService,
+	deleteServiceSucceeded,
+	updateService,
+	updateServiceSucceeded,
+} from "../../redux/slices/servicesSlice";
 import { openSucceededModal } from "../../redux/slices/modalSlice";
+import Load from "../../components/shared/Load/Load";
 
 const EditService = () => {
 	const services = useSelector((state) => state.services);
+	const addSessionsModalStatus = useSelector((state) => state.modal.addSessionsModal.status);
+	const [deleteInfo, setDeleteInfo] = useState(null);
 
 	const dispatch = useDispatch();
 	const { category } = useParams();
@@ -21,7 +29,6 @@ const EditService = () => {
 
 	const [name, setName] = useState("");
 	const [nameError, setNameError] = useState("");
-
 	const [description, setDescription] = useState("");
 	const [descriptionError, setDescriptionError] = useState("");
 	const [images, setImages] = useState([]);
@@ -29,15 +36,17 @@ const EditService = () => {
 
 	useEffect(() => {
 		if (serviceEdit) {
+			setImages(serviceEdit.images || []);
 			setName(serviceEdit.name);
 			setDescription(serviceEdit.description);
 		} else {
 			navigate("/services");
 		}
-	}, [navigate, services, serviceEdit]);
+	}, [navigate, serviceEdit]);
 
 	const handleAddService = (e) => {
 		e.preventDefault();
+
 		if (images.length === 0) {
 			setImagesError("Choose a photo");
 			return;
@@ -50,37 +59,72 @@ const EditService = () => {
 			setDescriptionError("Fill in this field");
 			return;
 		}
-
 		dispatch(
 			updateService({
 				id: category,
 				name: name,
 				description: description,
-				img_url: "update",
-				sessions: serviceEdit?.sessions.filter((item) => !item.id) || [],
+				img_url: images
+					.map((item) => (!item.id ? item.img_url : null))
+					.filter((url) => url !== null),
 			})
 		);
 	};
 
 	useEffect(() => {
-		if (services.updateService.status === "succeeded") {
+		if (services.updateService.status === "succeeded" && addSessionsModalStatus === "idle") {
 			dispatch(updateServiceSucceeded());
 			dispatch(openSucceededModal());
 			setTimeout(() => {
 				navigate("/services");
 			}, 5000);
 		}
-	}, [services.updateService, dispatch, navigate]);
+	}, [services.updateService, dispatch, navigate, addSessionsModalStatus]);
+
+	useEffect(() => {
+		if (services.deleteService.status === "succeeded") {
+			dispatch(deleteServiceSucceeded());
+			dispatch(openSucceededModal());
+		}
+	}, [services.deleteService, dispatch, navigate]);
+
+	if (!serviceEdit) {
+		return <Load type={"moduleLoader"} />;
+	}
 
 	return (
 		<div className="editService">
-			<Title back={() => navigate("/services")} title={serviceEdit.name} />
+			{deleteInfo && (
+				<div className="deleteInfo">
+					<div className="deleteInfoItem">
+						<h5>Are you sure you want to delete the session?</h5>
+						<div className="deleteInfoIteBtns">
+							<Button
+								onClick={() => dispatch(deleteService(serviceEdit.id))}
+								styleBtn={"DEL"}
+								disabled={services.deleteService.status === "pending"}
+								title={"Delete"}
+								type={"button"}
+							/>
+							<Button
+								onClick={() => setDeleteInfo(false)}
+								styleBtn={"LIGHT"}
+								disabled={false}
+								type={"button"}
+								title={"Cancel"}
+							/>
+						</div>
+					</div>
+				</div>
+			)}
+			<Title back={() => navigate("/services")} title={serviceEdit?.name} />
 			<form onSubmit={handleAddService}>
 				<ImagesUploader
 					setImagesError={setImagesError}
 					imagesError={imagesError}
 					images={images}
 					setImages={setImages}
+					objID={category}
 				/>
 				<div className="inputContainer">
 					<div className="inputContainerItem">
@@ -97,7 +141,7 @@ const EditService = () => {
 						<div className="buttonList">
 							<Button
 								onClick={() => {
-									console.log("DEL");
+									setDeleteInfo(true);
 								}}
 								styleBtn="DEL"
 								disabled={false}
@@ -123,7 +167,13 @@ const EditService = () => {
 				</div>
 			</form>
 			<div className="line"></div>
-			<AddSession serviceSessions={serviceEdit?.sessions || []} />
+			<AddSession
+				serviceSessions={
+					serviceEdit?.sessions
+						? serviceEdit?.sessions.filter((item) => item.sessions_type === "SERVICES")
+						: []
+				}
+			/>
 		</div>
 	);
 };

@@ -21,7 +21,7 @@ const ServiceCard = ({ href = null, imgUrl, name, company, classNames, onClick =
 			</div>
 			<div className="serviceCardInfo">
 				<h5>{name}</h5>
-				{/* <p>{company.toLowerCase()}</p> */}
+				<p>{company}</p>
 			</div>
 		</div>
 	);

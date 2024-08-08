@@ -50,7 +50,9 @@ const ModalRoot = () => {
 					close={() => dispatch(closeConnectServiceSubModal())}
 					title={"Please select the service that should be included in the subscription"}
 				>
-					<ConnectServiceSub />
+					<ConnectServiceSub
+						subscriptionObj={modalState.connectServiceSubModal.subscriptionObj}
+					/>
 				</Modal>
 			)}
 			{modalState.connectSessionSubModal.status === "open" && (
@@ -63,6 +65,7 @@ const ModalRoot = () => {
 					<ConnectSessionsSub
 						type={modalState.connectSessionSubModal.type}
 						serviceObj={modalState.connectSessionSubModal.serviceObj}
+						subscriptionId={modalState.connectSessionSubModal.subscriptionId}
 					/>
 				</Modal>
 			)}

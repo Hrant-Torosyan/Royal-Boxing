@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./AddSessionsModal.scss";
 import Input from "../../../ui/Input/Input";
 import CustomDatePicker from "../../CustomDatePicker/CustomDatePicker";
 import Button from "../../../ui/Button/Button";
 import Select from "../../../shared/Select/Select";
-import { useDispatch } from "react-redux";
-import { updateServiceSessions } from "../../../../redux/slices/servicesSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { updateService, updateServiceSucceeded } from "../../../../redux/slices/servicesSlice";
 import { closeAddSessionsModal } from "../../../../redux/slices/modalSlice";
 import { useParams } from "react-router-dom";
 const AddSessionsModal = () => {
+	const services = useSelector((state) => state.services);
 	const { category } = useParams();
 
 	const dispatch = useDispatch();
@@ -72,23 +73,31 @@ const AddSessionsModal = () => {
 		}
 
 		dispatch(
-			updateServiceSessions({
-				type: "ADD",
-				serviceID: category,
-				newSessions: {
-					name: name,
-					sessions_count: session,
-					viev: view,
-					validity: validity,
-					session_times: `${sessionTimes} ${sessionTimesInfo}`,
-					royals: bonus,
-					price: price,
-				},
+			updateService({
+				id: category,
+				sessions: [
+					{
+						name: name,
+						sessions_count: session,
+						viev: view,
+						validity: validity,
+						session_times: `${sessionTimes} ${sessionTimesInfo}`,
+						royals: bonus,
+						price: price,
+					},
+				],
 			})
 		);
-
-		dispatch(closeAddSessionsModal());
 	};
+
+	useEffect(() => {
+		if (services.updateService.status === "succeeded") {
+			dispatch(updateServiceSucceeded());
+			dispatch(closeAddSessionsModal());
+		}
+	}, [services.updateService, dispatch]);
+
+	
 	return (
 		<form className="addSessionsModal" onSubmit={handleAddSession}>
 			<Input
@@ -172,7 +181,11 @@ const AddSessionsModal = () => {
 				dark={true}
 			/>
 			<div className="buttonBox">
-				<Button styleBtn={"DARK"} disabled={false} title={"Save"} />
+				<Button
+					styleBtn={"DARK"}
+					disabled={services.updateService.status === "pending"}
+					title={"Save"}
+				/>
 			</div>
 		</form>
 	);

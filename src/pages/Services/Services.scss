@@ -55,73 +55,45 @@
 	}
 
 	.sessionsBlcok {
-		width: 85%;
+		width: 100%;
 		display: flex;
 		justify-content: space-between;
 		flex-wrap: wrap;
-		gap: 10rem;
+		gap: 1rem;
 		margin-top: 5rem;
-		.sessionItem {
-			flex: 0 1 calc(50% - 10rem);
-			padding: 1rem;
+	}
+	.deleteInfo {
+		position: absolute;
+		width: 100%;
+		z-index: 9999;
+		top: 0;
+		left: 0;
+		height: 100%;
+		backdrop-filter: blur(8px);
+		background: rgba(255, 255, 255, 0.1);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		.deleteInfoItem {
 			border-radius: 1.2rem;
+			width: 35%;
+			padding: 4rem 0;
 			box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
 			background: rgb(255, 255, 255);
-			.sessionItemHeader {
-				display: flex;
-				justify-content: space-between;
-				.title {
-					color: rgb(0, 0, 0);
-					font-size: 18px;
-					font-weight: 500;
-					margin-left: auto;
-				}
-				.edit {
-					margin-left: auto;
-					cursor: pointer;
-					transition: 0.5s;
-					border-radius: 0.4rem;
-					padding: 0.3rem;
-
-					&:hover {
-						box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
-					}
-				}
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			h5 {
+				color: rgb(0, 0, 0);
+				font-size: 2.2rem;
+				font-weight: 500;
 			}
-			.sessionItemContent {
-				margin-top: 2rem;
-				.sessionItemContentList {
-					&:first-child {
-						padding-right: 6rem;
-					}
-					&:last-child {
-						padding-left: 6rem;
-					}
-					display: flex;
-					justify-content: space-between;
-					.sessionItemContentItem {
-						width: 9rem;
-						height: 9rem;
-						border: 1px solid black;
-						border-radius: 50%;
-						display: flex;
-						justify-content: center;
-						align-items: center;
-						flex-direction: column;
-						p {
-							color: rgba(34, 34, 34, 0.7);
-							font-size: 1.2rem;
-							font-weight: 400;
-							text-align: center;
-						}
-						h5 {
-							color: rgb(34, 34, 34);
-							font-size: 1.6rem;
-							font-weight: 400;
-							text-align: center;
-						}
-					}
-				}
+			.deleteInfoIteBtns {
+				display: flex;
+				margin-top: 4rem;
+				gap: 4rem;
 			}
 		}
 	}

@@ -22,7 +22,9 @@
 			}
 		}
 	}
-
+	#imageLoader {
+		height: 100%;
+	}
 	.subscriptionImageUpload {
 		width: 100%;
 		height: 100%;
@@ -30,6 +32,7 @@
 		input {
 			display: none;
 		}
+
 		.subscriptionImageUploadFon {
 			position: absolute;
 			top: 0;

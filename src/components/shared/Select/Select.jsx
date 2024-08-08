@@ -26,7 +26,7 @@ const Select = ({ selectContent, select, setSelect, styleType = null }) => {
 					/>
 				</svg>
 			</div>
-			<div className="selectMenu scroll">
+			<div tabIndex="-1" className="selectMenu scroll">
 				{selectContent.map((item, key) => (
 					<div
 						onClick={() => setSelect(item)}

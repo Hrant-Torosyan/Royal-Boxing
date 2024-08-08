@@ -11,6 +11,7 @@ import Select from "../../components/shared/Select/Select";
 import { getRegisterUrl } from "../../util/getRegisterUrl";
 import { getAddUserArr } from "../../util/getAddUserArr";
 import { openSucceededModal } from "../../redux/slices/modalSlice";
+import { getCounrtyCodes } from "../../util/getCounrtyCodes";
 const AddUser = () => {
 	const state = useSelector((state) => state.auth);
 	const dispatch = useDispatch();
@@ -50,12 +51,25 @@ const AddUser = () => {
 			setNumberError("Fill in this field");
 			return;
 		}
+		let phoneNumberInfo = getCounrtyCodes(number);
+		if (number.trim().length !== phoneNumberInfo.phoneNumberLengthWithCode) {
+			setNumberError(
+				`Phone number must be at least ${phoneNumberInfo.phoneNumberLength} characters long`
+			);
+			return;
+		}
+
 		if (!password.trim()) {
 			setPasswordError("Fill in this field");
 			return;
 		}
 		if (password.trim().length < 8) {
 			setPasswordError("Password must be at least 8 characters");
+			return;
+		}
+		const hasNumber = /\d/;
+		if (!hasNumber.test(password)) {
+			setPasswordError("Password must contain at least one number");
 			return;
 		}
 		if (!resetPassword.trim()) {
