@@ -32,6 +32,7 @@ axiosClient.interceptors.response.use(
 				originalRequest.headers.Authorization = `Bearer ${token}`;
 				return axiosClient(originalRequest);
 			} catch (err) {
+				localStorage.removeItem("auth");
 				window.location.href = "/login";
 				throw err;
 			}

@@ -88,6 +88,7 @@ export const refreshToken = createAsyncThunk("auth/refreshToken", async (_, { ge
 		);
 		return response.data;
 	} catch (err) {
+		localStorage.removeItem("auth");
 		window.location.href = "/login";
 		throw err;
 	}
